@@ -28,7 +28,7 @@ const postCrud = {
         })
     },
     findPost: (id, res) => {
-        Post.findOne({ _id: id }).then(doc => {
+        Post.findOne().limit(1).skip(id-1).then(doc => {
             res.send(doc);
         }).catch(err => {
             console.log(err);
