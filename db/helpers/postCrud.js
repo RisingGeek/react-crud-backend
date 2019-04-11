@@ -2,7 +2,7 @@ const Post = require('../models/post-model');
 
 const postCrud = {
     getPosts: res => {
-        Post.find().then(docs => {
+        Post.find({}, { title: 1 }).sort({ $natural: -1 }).then(docs => {
             res.send(docs);
         }).catch(err => {
             console.log(err);
@@ -18,6 +18,7 @@ const postCrud = {
     editPost: (id,body, res) => {
         Post.updateOne({ _id: id }, {
             $set: {
+                username: body.username,
                 title: body.title,
                 body: body.body
             }
