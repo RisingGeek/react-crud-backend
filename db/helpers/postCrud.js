@@ -2,7 +2,7 @@ const Post = require('../models/post-model');
 
 const postCrud = {
     getPosts: res => {
-        Post.find({}, { title: 1 }).sort({ $natural: -1 }).then(docs => {
+        Post.find({}, { title: 1 }).then(docs => {
             res.send(docs);
         }).catch(err => {
             console.log(err);
